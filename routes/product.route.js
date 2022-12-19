@@ -6,7 +6,6 @@ const authenticate = require("../middlewares/seller.auth");
 const productRouter = express.Router();
 const productModel = require("../models/product.model")
 
-productRouter.use(authenticate)
 
 
 productRouter.get("/" , async (req,res) => {
@@ -31,6 +30,9 @@ productRouter.get("/category/:category" , async (req,res) => {
         res.send({"err" : "Error getting filtered data"})
     }
 })
+
+productRouter.use(authenticate)
+
 
 productRouter.get("/productid/:_id", async (req, res) => {
     const _id = req.params._id
